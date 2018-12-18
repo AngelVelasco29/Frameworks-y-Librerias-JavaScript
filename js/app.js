@@ -80,8 +80,7 @@ function reinicio(){
 		marginLeft: "-=33vw",
 		},1000,"linear",function(){
 			$(".buttons").css("marginLeft","33vw")
-			}
-	)
+	})
 }
 
 //funcion que activa el movimiento de los dulces.
@@ -127,7 +126,7 @@ function ancho(){
 	movimiento()
 }
 
-//funcion que verifica si hay 3 o mas
+//funcion que verifica si hay 3 o mas dulces consecutivos
 function checar(){
 setTimeout(function(){
 	for(var i=1;i<8;i++){
@@ -219,19 +218,21 @@ setTimeout(function(){
 	setTimeout(function(){
 		$(".eli").hide("200","linear",function(){
 			$(".eli").remove()
+			
 				for(var i=1;i<8;i++){
 				var hijos=$(".col-"+i)[0].childElementCount
 				if(hijos<7){
 					dulce=Math.floor(Math.random()*4+1)
 					if(hijos==0){
-						console.log(hijos)
+						
 						$(".col-"+i).append("<img src='image/"+dulce+".png' height='14%'> ")
 					}else{
+						
 						$(".col-"+i+" img:first-child").before("<img src='image/"+dulce+".png' height='14%'> ")
 					}
 				}
 			}
-			
+			console.log(hijos)
 			
 				for(var i=1;i<8;i++){
 					for(var j=1;j<8;j++){
@@ -239,31 +240,24 @@ setTimeout(function(){
 						$(".col-"+j+" img:nth-of-type("+(i)+")").attr("id","dulce"+j+i)
 					}			
 				}
-			
-			//movimiento()
 		})
 	},850)
-	setTimeout(function(){
-		console.log(eliminados)	
+	setTimeout(function(){	
 		if(eliminados>0){
 			checar()
 		}else{
 			movimiento()
-			//clearTimeout()
 		}
-		
-				
 	},1300)
 }
 //funcio para agregar dulces nuevos
 function agregarDulces(){
 	for(var i=1;i<8;i++){
-			for(var j=1;j<8;j++){
-				dulce=Math.floor(Math.random()*4+1)
-				$(".col-"+j).append("<img src='image/"+dulce+".png' id='dulce"+j+i+"' height='14%'> ")
-			}
+		for(var j=1;j<8;j++){
+			dulce=Math.floor(Math.random()*4+1)
+			$(".col-"+j).append("<img src='image/"+dulce+".png' id='dulce"+j+i+"' height='14%'> ")
 		}
-		
+	}
 }
 
 $(document).ready(function(){
@@ -283,16 +277,8 @@ $(document).ready(function(){
 		ancho()
 		checar()
 		cronometro(2)
-		
-		//$(".col-1 .dulce:nth-of-type(5)").css("opacity","0")
 	})
-	
 	$(window).resize(function(){
 		ancho()
 	})
-	
-	
-	
-	
-	
 })
